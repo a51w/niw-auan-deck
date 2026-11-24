@@ -73,13 +73,13 @@ $('dt').innerHTML=h}
 function coins(){var a=P(7.2,2,14+D[m][2]*.35).split(','),b=P(7.2,7.2,16+D[m][3]/22121*150).split(','),n=Math.min(6,1+Math.floor(D[m][2]/80)),dx=b[0]-a[0],dy=b[1]-a[1];
 for(var i=0;i<n;i++){var c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('cx',a[0]);c.setAttribute('cy',a[1]);c.setAttribute('r',6);c.setAttribute('fill','#f5b83d');c.setAttribute('stroke','#d79a22');$('cg').appendChild(c);
 if(!c.animate){c.remove();continue}
-var an=c.animate([{transform:'translate(0px,0px)',opacity:0},{transform:'translate('+dx/2+'px,'+(dy/2-50)+'px)',opacity:1,offset:.5},{transform:'translate('+dx+'px,'+dy+'px)',opacity:0}],{duration:1100,delay:i*140,easing:'ease-in-out',fill:'both'});
+var an=c.animate([{transform:'translate(0px,0px)',opacity:0},{transform:'translate('+dx/2+'px,'+(dy/2-50)+'px)',opacity:1,offset:.5},{transform:'translate('+dx+'px,'+dy+'px)',opacity:0}],{duration:700,delay:i*80,easing:'ease-in-out',fill:'both'});
 an.onfinish=(function(e){return function(){e.remove()}})(c)}}
 function cp(i){var n=i+1;return n<4?'เดือน '+n+': ผู้ใช้กลุ่มแรก 500 คนลองใช้ Pro ฟรี รายได้จึงยังน้อยมาก':n===4?'เดือน 4: หมดช่วงทดลอง สมาชิกเริ่มจ่ายเงิน รายได้กระโดดเป็น 9,706 บาท':n===5?'เดือน 5: เดือนแรกที่มีกำไรรายเดือน':n<11?'เดือน '+n+': ผู้ใช้ฟรีค่อยๆ อัปเกรด รายได้โตทุกเดือน':n===11?'เดือน 11: กำไรสะสมจากการดำเนินงานกลับมาเป็นบวก':'เดือน 12: สมาชิกที่จ่าย 395 คน รายได้ 22,121 บาทต่อเดือน ต่อไป: ขยายสู่ทีมที่ตอบแชทเยอะ เช่น ทีมขายและทีมซัพพอร์ต'}
 function go(n){cancelAnimationFrame(raf);var f=cur.slice(),t=D[n],t0=0;m=n;$('cap').textContent=cp(n);$('sl').value=n+1;coins();
-(function s(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/700),e=1-Math.pow(1-k,3);cur=f.map(function(a,i){return a+(t[i]-a)*e});prog=e;draw();if(k<1)raf=requestAnimationFrame(s);else dots()})(performance.now())}
+(function s(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/450),e=1-Math.pow(1-k,3);cur=f.map(function(a,i){return a+(t[i]-a)*e});prog=e;draw();if(k<1)raf=requestAnimationFrame(s);else dots()})(performance.now())}
 function stop(){clearInterval(timer);timer=null;$('pl').textContent=m===11?'เล่นใหม่':'เล่น'}
-function play(){if(m===11){m=0;cur=D[0].slice();go(0)}$('pl').textContent='หยุด';timer=setInterval(function(){if(m<11)go(m+1);else stop()},2300)}
+function play(){if(m===11){m=0;cur=D[0].slice();go(0)}$('pl').textContent='หยุด';timer=setInterval(function(){if(m<11)go(m+1);else stop()},1100)}
 $('pl').onclick=function(){timer?stop():play()};
 $('sl').oninput=function(){stop();go(this.value-1)};
 $('sv').onclick=function(e){var el=e.target.closest?e.target.closest('[data-t]'):null,t=el?el.getAttribute('data-t'):'',d=D[m];

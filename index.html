@@ -169,6 +169,8 @@ h2 u{text-underline-offset:6px}
 #s21 tbody tr{opacity:0}.slide.active #s21 tbody tr,#s21.active tbody tr{animation:up .6s forwards;animation-delay:calc(var(--i)*.18s + .3s)}
 #s21 .foot{display:flex;align-items:center;gap:30px;margin:24px 80px 0;font-size:38px}
 #s21 .foot img{height:150px}
+/* s22 comment */
+#s22 video{display:block;margin:26px auto 0;height:640px;max-width:1300px;border-radius:18px;background:#000;object-fit:contain;box-shadow:0 6px 20px #1b2a5c26}
 /* nav */
 #bar{height:54px;background:#0b1028;display:flex;align-items:center;gap:10px;padding:0 16px;color:#cfd7ff;font-size:15px;user-select:none}
 #bar button{background:#1d2650;border:0;color:#fff;border-radius:8px;padding:8px 16px;font:inherit;cursor:pointer;font-weight:600}
@@ -383,8 +385,15 @@ h2 u{text-underline-offset:6px}
 <div class="foot" data-a style="--d:1.1"><img src="assets/p18_0.png" alt=""><span>Make feature to be content</span></div></div>
 </section>
 
+
+<!-- 22 comment -->
+<section class="slide" id="s22" data-title="Comment (video)" data-new>
+<div class="pad" style="padding-top:44px"><h2 class="c" data-a style="font-size:52px"><span class="hi">comment</span></h2>
+<video id="vid2" src="assets/niw%20auan%201.mp4" playsinline controls preload="metadata" data-a style="--d:.3"></video></div>
+</section>
+
 </div></div>
-<div id="bar"><button id="prev">← Prev</button><button id="next">Next →</button><span id="cnt">1 / 21</span><span id="title"></span><button id="ovb">☰ Slides (O)</button><button id="fs">⛶ Full (F)</button></div>
+<div id="bar"><button id="prev">← Prev</button><button id="next">Next →</button><span id="cnt">1 / 22</span><span id="title"></span><button id="ovb">☰ Slides (O)</button><button id="fs">⛶ Full (F)</button></div>
 </div>
 <div id="ov"><div class="grid" id="ovg"></div></div>
 
@@ -428,16 +437,17 @@ function countUp(root){root.querySelectorAll('[data-count]').forEach(el=>{const 
 let dotTimer;
 function fill76(){clearInterval(dotTimer);grid.forEach(d=>d.classList.remove('on'));let i=0;dotTimer=setInterval(()=>{if(i<38)grid[i++].classList.add('on');else clearInterval(dotTimer)},48)}
 
-const vid=document.getElementById('vid'),unm=document.getElementById('unmute');
+const vid2=document.getElementById('vid2'),vid=document.getElementById('vid'),unm=document.getElementById('unmute');
 unm.onclick=()=>{vid.muted=!vid.muted;unm.textContent=vid.muted?'🔇 tap to unmute':'🔊 sound on'};
 vid.onvolumechange=()=>{unm.textContent=vid.muted?'🔇 tap to unmute':'🔊 sound on'};
 
 function go(n){
  n=Math.max(0,Math.min(slides.length-1,n));if(n===cur)return;
- const prev=slides[cur];if(prev){prev.classList.remove('active');prev.querySelectorAll('iframe[src]').forEach(f=>f.removeAttribute('src'));if(prev.id==='s2')vid.pause()}
+ const prev=slides[cur];if(prev){prev.classList.remove('active');prev.querySelectorAll('iframe[src]').forEach(f=>f.removeAttribute('src'));if(prev.id==='s2')vid.pause();if(prev.id==='s22')vid2.pause()}
  cur=n;const s=slides[n];void s.offsetWidth;s.classList.add('active');
  s.querySelectorAll('iframe[data-src]').forEach(f=>f.src=f.dataset.src);
  if(s.id==='s2'){vid.currentTime=0;vid.play().catch(()=>{})}
+ if(s.id==='s22'){vid2.currentTime=0;vid2.play().catch(()=>{})}
  if(s.id==='s8')fill76();
  countUp(s);
  document.getElementById('cnt').textContent=(n+1)+' / '+slides.length;

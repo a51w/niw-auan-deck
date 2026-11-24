@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>niw auan · pitch deck</title>
+<style>
+:root{--ink:#1b2a5c;--mut:#5b6585;--blue:#4f74f0;--navy:#1b2a5c;--pale:#f3f7fe;--line:#d9e1f2;--gold:#f5b83d;--green:#2fae7b;--red:#e8546a;--cream:#fdf3e7}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0e1430;font-family:"Noto Sans Thai",Tahoma,"Helvetica Neue",Arial,sans-serif;color:var(--ink);overflow:hidden}
+#app{display:flex;flex-direction:column;height:100%}
+#view{flex:1;min-height:0;position:relative;display:grid;place-items:center}
+#stage{width:1440px;height:810px;position:absolute;left:50%;top:50%;transform-origin:center;background:#fff;overflow:hidden;box-shadow:0 20px 80px #0008;border-radius:6px}
+.slide{position:absolute;inset:0;background:#fff;display:none;overflow:hidden}
+.slide.active{display:block;animation:sfade .4s ease}
+@keyframes sfade{from{opacity:0}to{opacity:1}}
+.slide.blue{background:var(--pale)}
+h2{font-size:54px;margin:0;font-weight:800;letter-spacing:-.5px}
+h2 em{font-style:italic;color:#1a1aff}
+h2 u{text-underline-offset:6px}
+.c{text-align:center}
+.pad{position:absolute;inset:0;padding:56px 70px}
+.hi{color:#1a1aff}.rd{color:#c0262d}
+/* entrance animations */
+[data-a]{opacity:0}
+.slide.active [data-a]{animation:up .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--d,0)*1s)}
+.slide.active [data-a=pop]{animation-name:pop}
+.slide.active [data-a=left]{animation-name:left}
+.slide.active [data-a=right]{animation-name:right}
+.slide.active [data-a=fade]{animation-name:fade}
+@keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}70%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes left{from{opacity:0;transform:translateX(-80px)}to{opacity:1;transform:none}}
+@keyframes right{from{opacity:0;transform:translateX(80px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+/* s1 */
+#s1{background:#f8efe3 url(assets/p01_0.png) center/cover}
+#s1 .ft{position:absolute;right:30px;bottom:24px;font-size:16px;color:#7b6b58}
+/* s2 video */
+#s2{background:#000}
+#s2 video{width:100%;height:100%;object-fit:cover;display:block}
+#s2 .hint{position:absolute;left:24px;top:20px;background:#0009;color:#fff;border-radius:20px;padding:8px 16px;font-size:16px;cursor:pointer;border:0}
+/* s3 */
+#s3 .row{display:flex;align-items:center;justify-content:center;gap:90px;height:100%;flex-direction:row}
+#s3 h2{font-size:64px}#s3 h2 span{color:#1a1aff}
+#s3 .mas{width:340px;animation:bob 3s ease-in-out infinite}
+#s3 .scan{font-size:60px;font-weight:800;color:var(--navy);text-align:center}
+#s3 .qr{width:460px;height:460px;border-radius:12px;box-shadow:0 10px 40px #1b2a5c22}
+@keyframes bob{50%{transform:translateY(-16px) rotate(-2deg)}}
+#s3 .col{display:flex;flex-direction:column;align-items:center;gap:6px}
+/* embed slides */
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#f3f7fe}
+.embed .tag{position:absolute;right:16px;top:12px;z-index:2;background:var(--navy);color:#fff;font-size:15px;padding:6px 14px;border-radius:18px;opacity:.85;pointer-events:none}
+/* s5 ntsb */
+#s5{background:#889db8 url(assets/p04_1.png) center/cover}
+#s5:before{content:"";position:absolute;inset:0;background:#e6edf6cc;backdrop-filter:blur(7px)}
+#s5 .q{position:absolute;left:0;right:0;top:230px;text-align:center;padding:0 160px;font-size:46px;font-weight:700;line-height:1.35;color:#111}
+#s5 .q b{color:#c0262d;font-size:56px}
+#s5 .src{position:absolute;left:0;right:0;top:470px;text-align:center;padding:0 220px;font-size:30px;font-style:italic;color:#1a1aff;line-height:1.5}
+#s5 .big{position:absolute;left:50%;top:80px;transform:translateX(-50%);font-size:100px;font-weight:900;color:#1b2a5c;opacity:.9;letter-spacing:-2px}
+/* refs */
+.ref h3{font-style:italic;font-weight:500;font-size:26px;text-align:center;margin:18px 120px 0;line-height:1.4}
+.ref .imgs{display:flex;justify-content:center;gap:30px;margin-top:26px;align-items:flex-start}
+.ref .imgs img{height:400px;border:1px solid #bbb;box-shadow:0 8px 26px #0002}
+.ref .cap{text-align:center;font-size:28px;margin-top:30px;line-height:1.5}
+.ref .cap b{font-weight:800}.ref .cap .rd{font-weight:700}
+.ref .tool{position:absolute;right:40px;top:40px;font-size:20px;color:#888}
+/* s8 76% */
+#s8 .num{font-size:340px;font-weight:900;line-height:1;margin-top:20px;letter-spacing:-8px}
+#s8 .sub{font-size:30px;font-weight:700}#s8 .sub2{font-size:22px;color:#444}
+.dots{display:grid;grid-template-columns:repeat(25,1fr);gap:10px;width:900px;margin:24px auto 0}
+.dots i{height:34px;border-radius:50%;background:#dfe5f5;transform:scale(.6);transition:background .25s,transform .25s}
+.dots i.on{background:#1a1aff;transform:scale(1)}
+/* s9 */
+#s9 .shots{display:flex;gap:60px;justify-content:center;margin-top:40px;align-items:center}
+#s9 .shots img{width:620px;border-radius:8px;box-shadow:0 12px 32px #0003}
+/* who */
+#s10 .cols{display:flex;justify-content:center;gap:120px;margin-top:40px}
+#s10 .col{text-align:center;width:560px}
+#s10 .col h3{font-size:36px;margin:0 0 16px}
+#s10 img{height:340px;transition:transform .4s}#s10 img:hover{transform:scale(1.05) rotate(-1deg)}
+#s10 p{font-size:24px;line-height:1.5;margin:16px 0}
+/* what */
+#s11{background:#fbf5ec}
+#s11:before{content:"";position:absolute;inset:0;background:url(assets/p10_2.png) center/cover;opacity:.18}
+#s11 .t{position:absolute;left:0;right:0;top:300px;text-align:center}
+#s11 .t p{font-size:38px;font-weight:600;line-height:1.5;margin:18px 200px}
+#s11 .t p span{color:#1a1aff}
+/* how */
+#s12 svg{position:absolute;inset:0;width:100%;height:100%}
+#s12 .in{position:absolute;left:100px;font-size:30px}
+#s12 .path{fill:none;stroke:#111;stroke-width:3;stroke-dasharray:1200;stroke-dashoffset:1200}
+.slide.active .path{animation:draw 1.4s ease forwards;animation-delay:calc(var(--d)*1s)}
+@keyframes draw{to{stroke-dashoffset:0}}
+#s12 .head{position:absolute;left:690px;top:430px;width:140px}
+#s12 .bub{position:absolute;left:930px;top:340px;width:420px;height:280px;border:4px solid #111;border-radius:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-size:34px}
+#s12 .bub .em{font-size:90px;display:flex;gap:14px;align-items:center}
+#s12 .bub .em small{font-size:36px}
+/* pdpa */
+#s13{background:var(--pale)}
+#s13 .grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin:46px 100px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px 36px;display:flex;gap:26px;align-items:flex-start;box-shadow:0 6px 20px #1b2a5c0d}
+.card img{width:70px;height:70px;border-radius:50%;flex:none}
+.card h4{margin:0 0 8px;font-size:30px;color:var(--navy)}
+.card p{margin:0;font-size:22px;color:var(--mut);line-height:1.5}
+/* tam */
+#s14 .rows{margin:34px 70px 0}
+#s14 .r{display:flex;align-items:center;gap:60px;margin-bottom:30px}
+#s14 .bar{height:110px;border-radius:14px;color:#fff;font-size:40px;font-weight:800;display:grid;place-items:center;width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1);flex:none}
+#s14.active .bar{width:var(--w)}
+#s14 .box{width:380px}
+#s14 .nums b{display:block;font-size:50px;font-weight:800;line-height:1.1}
+#s14 .nums span{font-size:26px;color:var(--mut)}
+#s14 .src{font-size:15px;color:var(--mut);margin:8px 70px;line-height:1.5}
+/* ask */
+#s15 .top{display:flex;align-items:center;gap:40px;margin-top:14px}
+#s15 .total{font-size:72px;font-weight:800;color:var(--blue)}
+#s15 .chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 24px;font-size:18px;color:var(--mut)}
+#s15 .chip b{display:block;font-size:30px;color:var(--navy)}
+#s15 .chip i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px}
+#s15 .chart{position:absolute;left:60px;top:190px;width:1320px;height:540px}
+.line{fill:none;stroke:var(--blue);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2000;stroke-dashoffset:2000}
+.slide.active .line{animation:draw 3s ease .5s forwards}
+.slide.active .area{animation:fade 1s 2.5s forwards}.area{opacity:0;fill:#4f74f01f}
+.mb{opacity:0;transform-origin:center bottom;transform:scaleY(0);transform-box:fill-box}
+.slide.active .mb{animation:grow .6s ease forwards;animation-delay:calc(.15s*var(--i) + .3s)}
+@keyframes grow{to{opacity:1;transform:scaleY(1)}}
+.ms{opacity:0}.slide.active .ms{animation:pop .5s forwards;animation-delay:calc(.15s*var(--i) + .6s);transform-box:fill-box;transform-origin:center}
+.cap{font:600 15px Tahoma,"Noto Sans Thai",sans-serif;fill:var(--navy)}.sm{font:13px Tahoma,sans-serif;fill:var(--mut)}
+/* fewer pay */
+#s18 .wrap{display:flex;gap:40px;margin:30px 60px 0}
+#s18 table{border-collapse:collapse;width:760px;font-size:26px;background:#fff}
+#s18 th{background:#2f5ee8;color:#fff;padding:14px;font-size:22px}
+#s18 td{border:1px solid #ccd;padding:16px;text-align:center}
+#s18 tr.base td{background:#fff2c2;font-weight:700}
+#s18 .neg{color:#c0262d;font-weight:800}#s18 .pos{color:#2a8a3f;font-weight:800}
+#s18 .be{border:3px solid #1a1aff;border-radius:14px;background:#fff3c4;width:330px;text-align:center;padding:30px 14px;font-size:22px}
+#s18 .be b{display:block;font-size:100px;color:#1a1aff;line-height:1.1}
+#s18 .bars{display:flex;gap:26px;align-items:flex-end;height:160px;margin-left:60px;position:absolute;left:760px;top:470px}
+#s18 .lo{margin:20px 60px 0;font-size:26px}#s18 .lo h3{margin:0 0 6px;font-size:28px}
+#s18 .lo li{margin:4px 0}
+#s18 .fn{position:absolute;left:60px;bottom:20px;right:60px;font-size:13px;color:#555;line-height:1.4}
+#s18 .mini{position:absolute;left:880px;top:440px;width:480px;height:230px}
+.pb{transform-origin:bottom;transform:scaleY(0);transform-box:fill-box}
+.slide.active .pb{animation:grow .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.3s*var(--i) + .7s)}
+.nb{transform-origin:top;transform:scaleY(0);transform-box:fill-box}
+.slide.active .nb{animation:grow .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:.7s}
+/* plan */
+#s19 .chars{display:flex;justify-content:center;gap:80px;margin-top:70px;align-items:flex-end}
+#s19 .ch{width:260px;text-align:center;font-size:21px;line-height:1.45}
+#s19 .ch img{height:230px;object-fit:contain;display:block;margin:0 auto 22px;animation:bob 3.4s ease-in-out infinite;animation-delay:calc(var(--d)*1s)}
+#s19 .ch b{color:#1a1aff;font-weight:600}
+.ch .price{display:inline-block;margin-top:12px;background:var(--pale);border:1px solid var(--line);border-radius:20px;padding:4px 14px;font-weight:800;font-size:20px;color:var(--navy)}
+/* reach */
+#s20 .g{display:grid;grid-template-columns:560px 1fr;gap:30px;margin:30px 70px 0}
+#s20 .tk{background:#4f74f0;color:#fff;border-radius:22px;padding:34px 40px;height:490px;position:relative}
+#s20 .tk h3{margin:0;font-size:48px;display:flex;align-items:center;gap:20px}
+#s20 .tk h3 i{width:74px;height:74px;background:#000;border-radius:18px;display:grid;place-items:center;font-style:normal;font-size:40px}
+#s20 .tk small{display:block;font-size:14px;opacity:.8;letter-spacing:1px;font-weight:400}
+#s20 .tk ul{font-size:22px;line-height:1.7;padding-left:26px}
+#s20 .tk .goal{position:absolute;left:40px;right:40px;bottom:26px;font-size:18px;font-weight:700}
+#s20 .side{display:flex;flex-direction:column;gap:18px}
+#s20 .side .card{padding:20px 26px;gap:20px;align-items:center}
+#s20 .card .ic{font-size:44px;width:70px;height:70px;border-radius:50%;display:grid;place-items:center;flex:none;background:#fdecc0}
+#s20 .card h4{font-size:24px;margin:0 0 4px}#s20 .card p{font-size:17px}#s20 .card b{display:block;font-size:17px;margin-top:6px;color:var(--navy)}
+#s20 .ban{margin:26px 70px 0;background:#fff0b8;border:1px solid #f2d77c;border-radius:14px;text-align:center;padding:18px;font-size:30px;font-weight:800;color:var(--navy)}
+/* marketing */
+#s21 table{width:1280px;margin:22px auto 0;border-collapse:collapse;font-size:19px;background:#fff}
+#s21 th{background:#2f6db0;color:#fff;text-align:left;padding:14px 18px;font-size:19px}
+#s21 td{border:1px solid #444;padding:16px 18px;line-height:1.45}
+#s21 tbody tr{opacity:0}.slide.active #s21 tbody tr,#s21.active tbody tr{animation:up .6s forwards;animation-delay:calc(var(--i)*.18s + .3s)}
+#s21 .foot{display:flex;align-items:center;gap:30px;margin:24px 80px 0;font-size:38px}
+#s21 .foot img{height:150px}
+/* nav */
+#bar{height:54px;background:#0b1028;display:flex;align-items:center;gap:10px;padding:0 16px;color:#cfd7ff;font-size:15px;user-select:none}
+#bar button{background:#1d2650;border:0;color:#fff;border-radius:8px;padding:8px 16px;font:inherit;cursor:pointer;font-weight:600}
+#bar button:hover{background:#3150c8}
+#bar button:disabled{opacity:.35;cursor:default}
+#bar .sp{flex:1}
+#prog{position:absolute;left:0;top:0;height:4px;background:var(--blue);width:0;transition:width .4s;z-index:50}
+#title{flex:1;text-align:center;opacity:.85}
+#ov{position:fixed;inset:0;background:#0b1028f2;z-index:100;display:none;padding:40px;overflow:auto}
+#ov.show{display:block}
+#ov .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;max-width:1300px;margin:auto}
+#ov button{background:#1a2247;border:2px solid transparent;color:#fff;border-radius:12px;padding:14px 16px;text-align:left;font:inherit;cursor:pointer}
+#ov button.cur{border-color:var(--blue)}#ov button:hover{background:#26316b}
+#ov small{color:#8fa0e0;display:block}
+#ov button.new{border-style:dashed;border-color:#f5b83d}
+</style></head>
+<body>
+<div id="prog"></div>
+<div id="app">
+<div id="view"><div id="stage">
+
+<!-- 1 -->
+<section class="slide" id="s1" data-title="Title"></section>
+
+<!-- 2 video -->
+<section class="slide" id="s2" data-title="Intro video (new)" data-new>
+<video id="vid" src="assets/intro.mp4" muted loop playsinline controls poster="assets/p02_0.png"></video>
+<button class="hint" id="unmute">🔇 tap to unmute</button>
+</section>
+
+<!-- 3 -->
+<section class="slide" id="s3" data-title="App demo QR">
+<div class="row">
+<div class="col" data-a="left"><h2><span>app</span> demo</h2><img class="mas" src="assets/mascot.png" alt=""><div class="scan">Scan !!!</div></div>
+<img class="qr" data-a="pop" style="--d:.4" src="assets/p03_0.png" alt="QR code">
+</div>
+</section>
+
+<!-- 4 portable -->
+<section class="slide embed" id="s4" data-title="Interactive walkthrough (portable.html)" data-new>
+<span class="tag">▶ interactive</span><iframe data-src="assets/portable.html" title="portable walkthrough" allow="autoplay"></iframe>
+</section>
+
+<!-- 5 ntsb -->
+<section class="slide" id="s5" data-title="NTSB quote">
+<div class="q" data-a>“Drivers who text are more than <b>twice</b> as likely to crash as undistracted drivers.”</div>
+<div class="src" data-a style="--d:.5">Source: National Transportation Safety Board (NTSB), Safety Alert — “Cell Phone Use While Driving Kills”</div>
+</section>
+
+<!-- 6 ref1 -->
+<section class="slide ref" id="s6" data-title="Reference 1">
+<div class="pad"><h2 class="c" data-a style="font-size:46px">Refference</h2>
+<h3 data-a style="--d:.2">RU mad @ me? Social anxiety and interpretation of ambiguous text messages &amp; 1st Century Messaging Etiquette — Mila Kingsbury and Robert J. Coplan (Carleton University)</h3>
+<div class="imgs"><img data-a="left" style="--d:.4" src="assets/p05_0.png" alt=""><img data-a="right" style="--d:.6" src="assets/p05_1.png" alt=""></div>
+<div class="cap" data-a style="--d:1">A survey found that <span class="rd">31% experience texting anxiety</span>, while another study found that <b>ambiguous messages are often interpreted negatively</b>, causing repeated edits out of fear of being misunderstood.</div></div>
+</section>
+
+<!-- 7 ref2 -->
+<section class="slide ref" id="s7" data-title="Reference 2">
+<div class="pad"><h2 class="c" data-a style="font-size:46px">Refference</h2>
+<h3 data-a style="--d:.2">“Non-verbal expressivity in alexithymia: A study on emoji use in text messaging across varying levels of alexithymia” — Allan, K. &amp; Budd, J.</h3>
+<div class="imgs" style="align-items:center"><img data-a="left" style="--d:.4" src="assets/p06_1.png" alt=""><div data-a="right" style="--d:.6;width:560px"><img src="assets/p06_0.png" style="height:auto;width:100%" alt=""><div style="font-size:28px;line-height:1.5;margin-top:20px"><span class="hi">emoji-based texting is an easier emotional</span> channel than face-to-face talk for people who struggle to verbalize feelings</div></div></div></div>
+</section>
+
+<!-- 8 76 -->
+<section class="slide c" id="s8" data-title="Pain point: 76%">
+<div class="pad" style="padding-top:34px">
+<h2 data-a style="font-size:52px"><span class="hi">pain</span> point</h2>
+<div class="sub" data-a style="--d:.15">Around 76% of Survey Group face <span class="hi">this problem</span></div>
+<div class="sub2" data-a style="--d:.2">Base on Friends and family n = 50</div>
+<div class="num" data-a="pop" style="--d:.3"><span data-count="76" data-dur="1600">0</span>%</div>
+<div class="dots" id="dots"></div>
+</div>
+</section>
+
+<!-- 9 -->
+<section class="slide c" id="s9" data-title="Pain point: chats">
+<div class="pad"><h2 data-a style="font-size:52px"><span class="hi">pain</span> point</h2>
+<div class="shots"><div data-a="left" style="--d:.3"><img src="assets/p08_0.png" alt=""><img src="assets/p08_1.png" style="margin-top:6px" alt=""></div><img data-a="right" style="--d:.7" src="assets/p08_2.png" alt=""></div></div>
+</section>
+
+<!-- 10 who -->
+<section class="slide c" id="s10" data-title="Who is niw auan user">
+<div class="pad"><h2 data-a><u>Who</u> is ‘<em>niw auan</em>’ user</h2>
+<div class="cols"><div class="col" data-a="left" style="--d:.3"><h3>Gen Z</h3><img src="assets/p09_0.png" alt=""><p>Most of gen Z suffer from <span class="hi">social anxiety</span> which leads to AI text</p></div>
+<div class="col" data-a="right" style="--d:.5"><h3>Middle Age</h3><img src="assets/p09_1.png" alt=""><p>Middle-aged people who use AI to help them <span class="hi">respond to work messages</span> or personal texts.</p></div></div></div>
+</section>
+
+<!-- 11 what -->
+<section class="slide" id="s11" data-title="What is niw auan">
+<div class="t"><h2 data-a><u>What</u> is ‘<em>niw auan</em>’</h2><p data-a style="--d:.4"><span>niw auan</span> is an AI keyboard extension that works in any chat or messaging app.</p></div>
+</section>
+
+<!-- 12 how -->
+<section class="slide" id="s12" data-title="How to create niw auan">
+<div class="pad"><h2 data-a class="c"><u>How</u> to create ‘<em>niw auan</em>’</h2></div>
+<svg viewBox="0 0 1440 810">
+<g class="path-g" fill="none"><path class="path" style="--d:.5" d="M350 307 H610 V470 H690"/>
+<path class="path" style="--d:.7" d="M400 417 H580 V520 H690"/>
+<path class="path" style="--d:.9" d="M350 545 H550 V570 H690"/>
+<path class="path" style="--d:1.1" d="M430 647 H610 V615 H690"/>
+<path class="path" style="--d:1.6" d="M845 520 H925" /></g>
+</svg>
+<div class="in" data-a="left" style="--d:.2;top:285px;left:130px">emoji of choice</div>
+<div class="in" data-a="left" style="--d:.4;top:395px;left:130px">chat history/context</div>
+<div class="in" data-a="left" style="--d:.6;top:505px;left:130px;line-height:1.3">few-shot<br>form dictionary</div>
+<div class="in" data-a="left" style="--d:.8;top:625px;left:130px">Conversation partner</div>
+<div style="position:absolute;left:690px;top:395px;font-weight:700" data-a style="--d:1">AI <i style="font-weight:400">llm</i></div>
+<img class="head" data-a="pop" style="--d:1.2" src="assets/p11_0.png" alt="">
+<div class="bub" data-a="pop" style="--d:1.9"><div class="em"><span>😠</span><small>+</small><span>💥</span></div>So piss</div>
+</section>
+
+<!-- 13 pdpa -->
+<section class="slide" id="s13" data-title="Data stays safe (PDPA)">
+<div class="pad"><h2 class="c" data-a>Your data stays safe (PDPA)</h2>
+<div class="grid">
+<div class="card" data-a style="--d:.2"><img src="assets/p12_0.png" alt=""><div><h4>Read only what's needed</h4><p>uses only the latest messages, only when the user taps for AI help</p></div></div>
+<div class="card" data-a style="--d:.4"><img src="assets/p12_1.png" alt=""><div><h4>Never used for training</h4><p>messages are used only to generate replies</p></div></div>
+<div class="card" data-a style="--d:.6"><img src="assets/p12_2.png" alt=""><div><h4>Delete anytime</h4><p>users can delete their data and close their account</p></div></div>
+<div class="card" data-a style="--d:.8"><img src="assets/p12_3.png" alt=""><div><h4>Consent first</h4><p>Privacy Policy and Terms in line with PDPA</p></div></div>
+</div></div>
+</section>
+
+<!-- 14 tam -->
+<section class="slide blue" id="s14" data-title="Who we can reach (TAM/SAM/SOM)">
+<div class="pad" style="padding-bottom:0"><h2 data-a style="font-size:44px">Who we can reach</h2>
+<div class="rows">
+<div class="r"><div class="box"><div class="bar" style="--w:380px;background:#4f74f0">TAM</div></div><div class="nums" data-a style="--d:.4"><b><span data-count="67.8" data-dec="1" data-dur="1400">0</span>M</b><span>Internet users in Thailand</span></div></div>
+<div class="r"><div class="box"><div class="bar" style="--w:255px;background:#f5b83d;margin-left:62px;transition-delay:.3s">SAM</div></div><div class="nums" data-a style="--d:.8"><b>10.8–13.4M</b><span>Gen Z in Thailand · about 85% already use generative AI</span></div></div>
+<div class="r"><div class="box"><div class="bar" style="--w:168px;background:#2fae7b;margin-left:106px;transition-delay:.6s">SOM</div></div><div class="nums" data-a style="--d:1.2"><b><span data-count="896" data-dur="1400">0</span></b><span>Users by month 12 · 395 paying · 22,121 THB a month</span></div></div>
+</div>
+<div class="src" data-a style="--d:1.6">We start with Gen Z, then grow to working adults and sales and support teams. Sources: DataReportal Digital 2026 (Oct 2025); Krungsri Research 2025 and Kadence (Gen Z size, age definitions differ); Marketing Oops, Aug 2026 (85% is indicative, no method given); niw auan Year-1 projection.</div>
+</div>
+</section>
+
+<!-- 15 ask + chart -->
+<section class="slide blue" id="s15" data-title="Our ask and first year">
+<div class="pad"><h2 data-a style="font-size:44px">Our ask and our first year</h2>
+<div class="top" data-a style="--d:.2"><div class="total"><span data-count="60362" data-dur="1500">0</span> THB</div>
+<div class="chip"><i style="background:#4f74f0"></i>Build &amp; setup<b>33,546 THB</b></div>
+<div class="chip"><i style="background:#f5b83d"></i>Run for 3 months<b>20,604 THB</b></div>
+<div class="chip"><i style="background:#2fae7b"></i>Emergency reserve<b>6,212 THB</b></div></div></div>
+<svg class="chart" id="ch" viewBox="0 0 1320 540"></svg>
+</section>
+
+<!-- 16 money city -->
+<section class="slide embed" id="s16" data-title="Money City (money-city.html)" data-new>
+<span class="tag">▶ interactive · press play</span><iframe data-src="assets/money-city.html" title="Money city"></iframe>
+</section>
+
+<!-- 17 demo -->
+<section class="slide embed" id="s17" data-title="Live demo (niw-uan-demo-v2)" data-new>
+<span class="tag">▶ live demo</span><iframe data-src="assets/demo.html" title="niw auan demo"></iframe>
+</section>
+
+<!-- 18 fewer -->
+<section class="slide" id="s18" data-title="What if fewer people pay?">
+<div class="pad" style="padding-top:40px"><h2 data-a style="font-size:50px;margin-left:10px">What if fewer people pay?</h2>
+<div class="wrap">
+<table data-a style="--d:.2"><thead><tr><th>Trial → paid</th><th>Paying (month 12)</th><th>Profit/month (THB)</th><th>Status</th></tr></thead>
+<tbody><tr><td>10%</td><td>132</td><td class="neg">−3,452</td><td class="neg" style="font-weight:600">Loss</td></tr>
+<tr><td>20%</td><td>263</td><td><b>+574</b></td><td>Near break-even</td></tr>
+<tr class="base"><td>30% (base)</td><td>395</td><td class="pos" style="color:#000">+4,630</td><td class="pos" style="font-weight:600">Profit</td></tr></tbody></table>
+<div class="be" data-a="pop" style="--d:.6"><b><span data-count="244" data-dur="1400">0</span></b>paying users per month to cover monthly costs</div>
+<svg class="mini" viewBox="0 0 480 230">
+<line x1="10" x2="470" y1="95" y2="95" stroke="#999"/>
+<rect class="nb" style="--i:0" x="50" y="95" width="80" height="62" fill="#e8546a"/>
+<rect class="pb" style="--i:1" x="200" y="88" width="80" height="7" fill="#f5b83d"/>
+<rect class="pb" style="--i:2" x="350" y="20" width="80" height="75" fill="#2fae7b"/>
+<text x="90" y="182" text-anchor="middle" class="sm">10%</text><text x="240" y="182" text-anchor="middle" class="sm">20%</text><text x="390" y="182" text-anchor="middle" class="sm">30%</text>
+<text x="90" y="205" text-anchor="middle" class="cap" fill="#e8546a" style="fill:#e8546a">−3,452</text><text x="240" y="205" text-anchor="middle" class="cap">+574</text><text x="390" y="205" text-anchor="middle" class="cap" style="fill:#2fae7b">+4,630</text>
+</svg></div>
+<div class="lo" data-a style="--d:1"><h3>If conversion is lower, we can:</h3><ul><li>Lower the daily free quota to cut AI cost</li><li>Raise the price to 79 THB/month</li><li>Expand to teams that answer many chats</li></ul></div>
+<div class="fn" data-a style="--d:1.2">Based on net profit of 30.73 THB per paying user; fixed cost 3,500 + 501 free users × 8 THB; paying users scaled by conversion rate; excludes the 33,546 THB setup cost. 244 paying users = break-even point where profit per paying user (30.73 THB) covers fixed costs (3,500 THB) plus AI cost for 501 free users (8 THB each), about 7,500 THB per month. Simplified estimate.</div>
+</div>
+</section>
+
+<!-- 19 plan -->
+<section class="slide c" id="s19" data-title="User plan">
+<div class="pad"><h2 data-a style="font-size:56px">user ‘<em>plan</em>’</h2>
+<div class="chars">
+<div class="ch" data-a="pop" style="--d:.3"><img src="assets/p16_1.png" alt=""><b>Founding User</b> who Registers and fills in the survey in the first 3 months after launch (first 500 users)<br><span class="price">Pro free · 3 mo</span></div>
+<div class="ch" data-a="pop" style="--d:.55"><img src="assets/p16_0.png" alt=""><b>Early Bird</b> Anyone who pays within the first 2 months 49 THB a month or 490 THB a year<br><span class="price">49 THB / mo</span></div>
+<div class="ch" data-a="pop" style="--d:.8"><img src="assets/p16_2.png" alt=""><b>Regular</b> Everyone after that 59 THB a month or 590 THB a year<br><span class="price">59 THB / mo</span></div>
+<div class="ch" data-a="pop" style="--d:1.05"><img src="assets/p16_3.png" alt=""><b>Free</b> Everyone who doesn't pay, including expired trials · limit 8 uses a day<br><span class="price">0 THB</span></div>
+</div></div>
+</section>
+
+<!-- 20 reach -->
+<section class="slide blue" id="s20" data-title="How we reach our first users">
+<div class="pad" style="padding-bottom:0"><h2 data-a style="font-size:44px">How we reach our first users</h2>
+<div class="g">
+<div class="tk" data-a="left" style="--d:.2"><h3><i>🎬</i><span>TikTok<small>MAIN CHANNEL</small></span></h3>
+<ul><li>Short demo clips: tap icons, get a sentence</li><li>Before and after typing struggles</li><li>Relatable “niw auan” moments</li><li>Shows how suggestions help when you can’t find the words</li></ul>
+<div class="goal">Goal: reach Gen Z and early working-age users who struggle to find the right words</div></div>
+<div class="side">
+<div class="card" data-a="right" style="--d:.4"><div class="ic">📸</div><div><h4>Instagram / Facebook</h4><p>Repost TikTok highlights as Reels; behind-the-scenes of building niw auan</p><b>Goal: credibility and a wider age range</b></div></div>
+<div class="card" data-a="right" style="--d:.6"><div class="ic" style="background:#cdeedd">🎓</div><div><h4>Campus / peer network</h4><p>Share with classmates and student groups; first real users test it</p><b>Goal: early adopters and feedback</b></div></div>
+<div class="card" data-a="right" style="--d:.8"><div class="ic" style="background:#fbd5da">🏆</div><div><h4>Pitch events</h4><p>Present at student pitching competitions</p><b>Goal: visibility and possible prize funding</b></div></div>
+</div></div>
+<div class="ban" data-a style="--d:1.1">Make the feature the content: every demo clip is the marketing</div></div>
+</section>
+
+<!-- 21 marketing -->
+<section class="slide" id="s21" data-title="Marketing plan">
+<div class="pad" style="padding-top:44px"><h2 data-a style="font-size:46px;margin-left:80px">Marketing Plan</h2>
+<table><thead><tr><th style="width:240px">Channel</th><th>Strategy</th><th style="width:400px">Goal</th></tr></thead><tbody>
+<tr style="--i:0"><td>TikTok (main channel)</td><td>Short demo clips showing icon-tap → sentence, before/after typing struggles, relatable "niw auan" moments, including how the suggestion feature helps users who can't think what to say</td><td>Reach Gen Z / early working-age users, drive app awareness, especially those who struggle to find the right words</td></tr>
+<tr style="--i:1"><td>Instagram / Facebook</td><td>Repost TikTok highlights as Reels, behind-the-scenes of building Pictalk</td><td>Build credibility, reach wider age range</td></tr>
+<tr style="--i:2"><td>Campus / Peer Network</td><td>Share directly with classmates and student groups, get first real users to test</td><td>Early adopters + feedback loop</td></tr>
+<tr style="--i:3"><td>Pitch Events</td><td>Present at student pitching competitions for visibility and funding</td><td>Exposure + potential prize funding</td></tr></tbody></table>
+<div class="foot" data-a style="--d:1.1"><img src="assets/p18_0.png" alt=""><span>Make feature to be content</span></div></div>
+</section>
+
+</div></div>
+<div id="bar"><button id="prev">← Prev</button><button id="next">Next →</button><span id="cnt">1 / 21</span><span id="title"></span><button id="ovb">☰ Slides (O)</button><button id="fs">⛶ Full (F)</button></div>
+</div>
+<div id="ov"><div class="grid" id="ovg"></div></div>
+
+<script>
+const stage=document.getElementById('stage'),view=document.getElementById('view');
+const slides=[...document.querySelectorAll('.slide')];let cur=-1;
+function fit(){const s=Math.min(view.clientWidth/1440,view.clientHeight/810);stage.style.transform='translate(-50%,-50%) scale('+s+')'}
+addEventListener('resize',fit);fit();
+
+// cumulative chart (data from the money-city model)
+const D=[[613,-8256],[1225,-15267],[1963,-21908],[9706,-22174],[9706+0,0]];
+const REV=[613,1225,1963,9706,11222,12749,14287,15834,17392,18959,20535,22121];
+const CUM=[-8256,-15267,-21908,-22174,-21401,-19579,-16701,-12757,-7738,-1636,5556,13848];
+(function(){
+ const svg=document.getElementById('ch'),L=90,R=1280,T=40,B=420,min=-25000,max=25000;
+ const x=i=>L+(R-L)*(i/11)*.96+30, y=v=>T+(max-v)/(max-min)*(B-T);
+ const mx=22121;let h='';
+ h+=`<line x1="${L}" x2="${R}" y1="${y(0)}" y2="${y(0)}" stroke="#aab4d4" stroke-dasharray="6 6"/>`;
+ [-20000,-10000,10000,20000].forEach(v=>h+=`<line x1="${L}" x2="${R}" y1="${y(v)}" y2="${y(v)}" stroke="#e3e9f7"/><text x="${L-10}" y="${y(v)+5}" text-anchor="end" class="sm">${v>0?'+':''}${v/1000}k</text>`);
+ h+=`<text x="${L-10}" y="${y(0)+5}" text-anchor="end" class="sm">0</text>`;
+ REV.forEach((r,i)=>{const bh=r/mx*130;h+=`<rect class="mb" style="--i:${i}" x="${x(i)-16}" y="${y(0)-bh}" width="32" height="${bh}" rx="4" fill="#f5b83d" opacity=".9"/>`});
+ const pts=CUM.map((v,i)=>[x(i),y(v)]);
+ h+=`<path class="area" d="M${pts.map(p=>p.join(',')).join(' L')} L${pts[11][0]},${y(0)} L${pts[0][0]},${y(0)}Z"/>`;
+ h+=`<path class="line" d="M${pts.map(p=>p.join(',')).join(' L')}"/>`;
+ for(let i=0;i<12;i++)h+=`<text x="${x(i)}" y="${B+26}" text-anchor="middle" class="sm">${i+1}</text>`;
+ h+=`<text x="${(L+R)/2}" y="${B+52}" text-anchor="middle" class="sm">Month  ·  <tspan fill="#4f74f0" font-weight="700">━ cumulative operating profit</tspan>   <tspan fill="#f5b83d" font-weight="700">▮ monthly revenue</tspan></text>`;
+ const ms=[[0,'Months 1–3','First 500 Founding Users try Pro free','#f5b83d',-1],[3,'Month 4','Trials end, paying members start','#4f74f0',1],[4,'Month 5','First profitable month','#2fae7b',-1],[10,'Month 11','Cumulative operating profit turns positive','#2fae7b',1],[11,'Month 12','395 paying · 22,121 THB a month','#4f74f0',-1]];
+ ms.forEach((m,k)=>{const px=pts[m[0]][0],py=pts[m[0]][1];const up=m[4]<0;const by=up?py-92:py+26;const w=190;let bx=Math.min(Math.max(px-w/2,L-50),1320-w);
+  h+=`<g class="ms" style="--i:${m[0]}"><circle cx="${px}" cy="${py}" r="9" fill="${m[3]}" stroke="#fff" stroke-width="3"/><line x1="${px}" x2="${px}" y1="${py+(up?-9:9)}" y2="${up?by+56:by}" stroke="${m[3]}" stroke-width="2"/><rect x="${bx}" y="${by}" width="${w}" height="56" rx="8" fill="#fff" stroke="#d9e1f2"/><text x="${bx+10}" y="${by+20}" class="cap">${m[1]}</text><foreignObject x="${bx+6}" y="${by+22}" width="${w-12}" height="34"><div xmlns="http://www.w3.org/1999/xhtml" style="font:12px/1.25 Tahoma,sans-serif;color:#5b6585">${m[2]}</div></foreignObject></g>`});
+ h+=`<text x="${L}" y="${B+80}" class="sm" style="font-size:12px">Year-1 projection (assumptions, not real sales). Operating profit only: excludes the 33,546 THB one-time setup cost.</text>`;
+ svg.innerHTML=h;
+})();
+
+// 76% dots
+const dots=document.getElementById('dots');for(let i=0;i<50;i++){dots.append(document.createElement('i'))}
+const grid=[...dots.children];
+
+// count up
+function countUp(root){root.querySelectorAll('[data-count]').forEach(el=>{const to=+el.dataset.count,dec=+(el.dataset.dec||0),dur=+(el.dataset.dur||1200),t0=performance.now()+(+(el.dataset.delay||300));
+ el.textContent=(0).toFixed(dec);(function s(n){const k=Math.max(0,Math.min(1,(n-t0)/dur)),e=1-Math.pow(1-k,3),v=to*e;el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('en-US');if(k<1&&el.closest('.active'))requestAnimationFrame(s)})(performance.now())})}
+let dotTimer;
+function fill76(){clearInterval(dotTimer);grid.forEach(d=>d.classList.remove('on'));let i=0;dotTimer=setInterval(()=>{if(i<38)grid[i++].classList.add('on');else clearInterval(dotTimer)},48)}
+
+const vid=document.getElementById('vid'),unm=document.getElementById('unmute');
+unm.onclick=()=>{vid.muted=!vid.muted;unm.textContent=vid.muted?'🔇 tap to unmute':'🔊 sound on'};
+vid.onvolumechange=()=>{unm.textContent=vid.muted?'🔇 tap to unmute':'🔊 sound on'};
+
+function go(n){
+ n=Math.max(0,Math.min(slides.length-1,n));if(n===cur)return;
+ const prev=slides[cur];if(prev){prev.classList.remove('active');prev.querySelectorAll('iframe[src]').forEach(f=>f.removeAttribute('src'));if(prev.id==='s2')vid.pause()}
+ cur=n;const s=slides[n];void s.offsetWidth;s.classList.add('active');
+ s.querySelectorAll('iframe[data-src]').forEach(f=>f.src=f.dataset.src);
+ if(s.id==='s2'){vid.currentTime=0;vid.play().catch(()=>{})}
+ if(s.id==='s8')fill76();
+ countUp(s);
+ document.getElementById('cnt').textContent=(n+1)+' / '+slides.length;
+ document.getElementById('title').textContent=s.dataset.title||'';
+ document.getElementById('prog').style.width=((n+1)/slides.length*100)+'%';
+ document.getElementById('prev').disabled=n===0;document.getElementById('next').disabled=n===slides.length-1;
+ history.replaceState(null,'','#'+(n+1));
+ document.querySelectorAll('#ovg button').forEach((b,i)=>b.classList.toggle('cur',i===n));
+}
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.getElementById('next').onclick=()=>go(cur+1);
+document.getElementById('fs').onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()};
+const ov=document.getElementById('ov');
+function toggleOv(){ov.classList.toggle('show')}
+document.getElementById('ovb').onclick=toggleOv;
+ov.onclick=e=>{if(e.target===ov)toggleOv()};
+slides.forEach((s,i)=>{const b=document.createElement('button');if(s.hasAttribute('data-new'))b.className='new';b.innerHTML='<small>'+(i+1)+(s.hasAttribute('data-new')?' · added':'')+'</small>'+s.dataset.title;b.onclick=()=>{go(i);toggleOv()};document.getElementById('ovg').append(b)});
+addEventListener('keydown',e=>{
+ if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='Enter'){e.preventDefault();go(cur+1)}
+ else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+ else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+ else if(e.key==='f'||e.key==='F')document.getElementById('fs').click();
+ else if(e.key==='o'||e.key==='O'||e.key==='Escape'&&ov.classList.contains('show'))toggleOv();
+});
+// click to advance (plain slides only), swipe
+stage.addEventListener('click',e=>{if(e.target.closest('a,button,video,iframe,input,table,.embed'))return;const r=stage.getBoundingClientRect();go(cur+((e.clientX-r.left)<r.width*.2?-1:1))});
+let sx=null;view.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});view.addEventListener('touchend',e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>60)go(cur+(dx<0?1:-1));sx=null});
+go(Math.max(0,(parseInt(location.hash.slice(1))||1)-1));
+</script>
+</body></html>
